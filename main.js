@@ -115,7 +115,7 @@
 
     let output = "";
     for (let i = 0; i < answers.length; i++) {
-        output += `(Автор: [b]${answers[i].author}[/b])\n${answers[i].answer}\n\n\n\n\n\n\n\n\n\n`;
+        output += `(Автор: [b]${answers[i].author}[/b])\n(${answers[i].author})\n${answers[i].answer}\n\n^^^^^^^^^^^^^^^^^^^^^^^^ КОНЕЦ ПОСТА ^^^^^^^^^^^^^^^^^^^^^^^^n\n\n\n\n\n\n\n`;
     }
 
     const outputToFile = (output) => {
