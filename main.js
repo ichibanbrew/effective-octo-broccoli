@@ -4,7 +4,7 @@
         alert("Не найдена таблица с ответами");
         return;
     }
-    const rows = parentDOM.querySelectorAll('table.table1 > tbody > tr');
+    const rows = parentDOM.querySelectorAll("table.table1 > tbody > tr");
     if (!rows.length) {
         alert("Не найдены ряды таблицы с ответами");
         return;
@@ -34,7 +34,7 @@
     const parseText = (node) => {
         let parsed = "";
         while (node) {
-            console.log("        nodeName:" + node.nodeName + ", nodeValue: " + node.nodeValue + ", nodeType: " + node.nodeType);
+            // console.log("        nodeName:" + node.nodeName + ", nodeValue: " + node.nodeValue + ", nodeType: " + node.nodeType);
             let innerParsed = "";
             if (node.hasChildNodes()) {
                 innerParsed = parseText(node.firstChild);
@@ -94,7 +94,7 @@
         switch (i % 2) {
             case 0:
                 // Answer
-                const answer_cell = rows[i].getElementsByClassName('view_td3')[0];
+                const answer_cell = rows[i].getElementsByClassName("view_td3")[0];
                 answers[answers.length - 1].answer = answer_cell;
                 if (!answer_cell.hasChildNodes()) { alert("Answer cell is empty"); }
                 // console.log(answer_cell.children);
@@ -103,8 +103,8 @@
                 break;
             case 1:
                 // Heading
-                const author_cell = rows[i].getElementsByClassName('view_td1')[0];
-                const timestamp_cell = rows[i].getElementsByClassName('view_td2')[0];
+                const author_cell = rows[i].getElementsByClassName("view_td1")[0];
+                const timestamp_cell = rows[i].getElementsByClassName("view_td2")[0];
                 answers.push({ author: author_cell.firstElementChild.textContent, timestamp: timestamp_cell.firstElementChild.textContent });
                 break;
 
@@ -115,15 +115,16 @@
 
     let output = "";
     for (let i = 0; i < answers.length; i++) {
-        output += `(Автор: [b]${answers[i].author}[/b])\n(${answers[i].author})\n${answers[i].answer}\n\n^^^^^^^^^^^^^^^^^^^^^^^^ КОНЕЦ ПОСТА ^^^^^^^^^^^^^^^^^^^^^^^^n\n\n\n\n\n\n\n`;
+        output += `(Автор: [b]${answers[i].author}[/b])\n(${answers[i].timestamp})\n${answers[i].answer}\n\n`;
+        output += "^^^^^^^^^^^^^^^^^^^^^^^^ КОНЕЦ ПОСТА ^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n\n\n\n\n\n\n";
     }
 
     const outputToFile = (output) => {
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(output));
-        element.setAttribute('download', "форум.txt");
+        var element = document.createElement("a");
+        element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(output));
+        element.setAttribute("download", "форум.txt");
 
-        element.style.display = 'none';
+        element.style.display = "none";
         document.body.appendChild(element);
 
         element.click();
