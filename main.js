@@ -18,15 +18,20 @@
 
     const emoticonsMap = {
         "sm1.gif": " :) ",
-        "sm6.gif": " :D ",
-        "sm9.gif": " :? ",
-        "sm15.gif": " :P ",
-        "sm10.gif": " 8-) ",
-        "sm16.gif": " :P ",
         "sm2.gif": " :( ",
-        "sm4.gif": " :P ",
         "sm3.gif": " ;) ",
+        "sm4.gif": " :P ",
+        "sm5.gif": " :| ",
+        "sm6.gif": " :D ",
         "sm7.gif": " :shock: ",
+        "sm8.gif": " :( ",
+        "sm9.gif": " :? ",
+        "sm10.gif": " 8-) ",
+        "sm13.gif": " :x ",
+        "sm15.gif": " :P ",
+        "sm16.gif": " :P ",
+        "sm17.gif": " :| ",
+        "sm18.gif": " :? ",
     };
 
     const defaultEmoticon = " :) ";
@@ -34,7 +39,6 @@
     const parseText = (node) => {
         let parsed = "";
         while (node) {
-            // console.log("        nodeName:" + node.nodeName + ", nodeValue: " + node.nodeValue + ", nodeType: " + node.nodeType);
             let innerParsed = "";
             if (node.hasChildNodes()) {
                 innerParsed = parseText(node.firstChild);
@@ -59,7 +63,6 @@
                             let split = node.currentSrc.split("/");
                             let filename = split[split.length - 1];
                             let emoticon = emoticonsMap[filename] ?? defaultEmoticon;
-                            // console.log("Image filename: " + filename + ", emoticon: " + emoticon);
                             parsed += emoticon;
                         }
                         break;
@@ -97,7 +100,6 @@
                 const answer_cell = rows[i].getElementsByClassName("view_td3")[0];
                 answers[answers.length - 1].answer = answer_cell;
                 if (!answer_cell.hasChildNodes()) { alert("Answer cell is empty"); }
-                // console.log(answer_cell.children);
                 let parsed = parseText(answer_cell.firstChild);
                 answers[answers.length - 1].answer = parsed;
                 break;
