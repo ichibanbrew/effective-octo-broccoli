@@ -135,5 +135,7 @@
     }
 
     outputToFile(output);
+    
+    return `Количество постов: ${answers.length}`;
 
 })();
