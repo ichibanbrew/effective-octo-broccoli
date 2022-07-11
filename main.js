@@ -117,7 +117,7 @@
 
     let output = "";
     for (let i = 0; i < answers.length; i++) {
-        output += `(Автор: [b]${answers[i].author}[/b])\n(${answers[i].timestamp})\n${answers[i].answer}\n\n`;
+        output += `(Автор: [b]${answers[i].author}[/b])\n(${answers[i].timestamp})\n\n${answers[i].answer}\n\n`;
         output += "^^^^^^^^^^^^^^^^^^^^^^^^ КОНЕЦ ПОСТА ^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n\n\n\n\n\n\n";
     }
 
@@ -137,5 +137,4 @@
     outputToFile(output);
     
     return `Количество постов: ${answers.length}`;
-
 })();
