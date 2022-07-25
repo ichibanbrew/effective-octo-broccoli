@@ -99,7 +99,7 @@
                 // Answer
                 const answer_cell = rows[i].getElementsByClassName("view_td3")[0];
                 answers[answers.length - 1].answer = answer_cell;
-                if (!answer_cell.hasChildNodes()) { alert("Answer cell is empty"); }
+                if (!answer_cell.hasChildNodes()) { alert("Ячейка с ответом пуста."); }
                 let parsed = parseText(answer_cell.firstChild);
                 answers[answers.length - 1].answer = parsed;
                 break;
@@ -107,7 +107,7 @@
                 // Heading
                 const author_cell = rows[i].getElementsByClassName("view_td1")[0];
                 const timestamp_cell = rows[i].getElementsByClassName("view_td2")[0];
-                answers.push({ author: author_cell.firstElementChild.textContent, timestamp: timestamp_cell.firstElementChild.textContent });
+                answers.push({ author: author_cell.firstElementChild.textContent, timestamp: timestamp_cell.firstElementChild.innerText });
                 break;
 
             default:
@@ -117,12 +117,12 @@
 
     let output = "";
     for (let i = 0; i < answers.length; i++) {
-        output += `(Автор: [b]${answers[i].author}[/b])\n(${answers[i].timestamp})\n${answers[i].answer}\n\n`;
+        output += `(Автор: [b]${answers[i].author}[/b])\n(${answers[i].timestamp})\n\n${answers[i].answer}\n\n`;
         output += "^^^^^^^^^^^^^^^^^^^^^^^^ КОНЕЦ ПОСТА ^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n\n\n\n\n\n\n";
     }
 
     const outputToFile = (output) => {
-        var element = document.createElement("a");
+        let element = document.createElement("a");
         element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(output));
         element.setAttribute("download", "форум.txt");
 
@@ -135,5 +135,6 @@
     }
 
     outputToFile(output);
-
+    
+    return `Количество постов: ${answers.length}`;
 })();
